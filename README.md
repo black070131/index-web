@@ -1,4 +1,4 @@
-ThePirataFilmes – Indexador de Filmes e Séries Brasileiros
+ThePirataFilmes – Indexador de Filmes e Séries Brasileiros integração prowlarr
 
 O ThePirataFilmes é uma plataforma que centraliza diversos indexadores de filmes e séries brasileiros em um só lugar, facilitando a busca e o acesso a conteúdos nacionais.
 
