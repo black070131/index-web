@@ -7,7 +7,7 @@ O ThePirataFilmes é uma plataforma que centraliza diversos indexadores de filme
 🇧🇷 Foco em conteúdos brasileiros
 📂 Organização por categorias (gênero, ano, etc.)
 
-📌 Sobre o Projeto
+📌 serve
 link https://www.thepiratafilmes.online 
 
 # 📦 ThepirataFilmes – Indexador Prowlarr
