@@ -18,10 +18,38 @@ Indexador customizado para **Prowlarr**, focado em filmes e séries com conteúd
 ## 🚀 Sobre
 
 O **ThepirataFilmes** é um indexador que centraliza resultados de filmes e séries, permitindo integração com:
-
+- stremio
 - Prowlarr
 - Radarr
 - Sonarr
+# 🎬 Addon Stremio
+
+Addon integrado para exibição de filmes e séries via indexador.
+
+## 🚀 Como instalar
+
+Para adicionar o addon no Stremio é bem simples:
+
+1. Acesse o link do addon  
+2. Clique no botão **"Install" (Instalar no Stremio)**  
+3. O Stremio abrirá automaticamente  
+4. Confirme a instalação  
+
+Pronto! ✅ O addon já estará disponível no seu Stremio.
+
+## ⚙️ Observações
+
+- O funcionamento depende da disponibilidade de **seeders**  
+- Conteúdos com mais seeders carregam mais rápido  
+- Conteúdos com poucos seeders podem apresentar lentidão ou não carregar  
+
+## 📌 Requisitos
+
+- Ter o :contentReference[oaicite:0]{index=0} instalado
+
+## 🧩 Sobre
+
+Este addon utiliza fontes baseadas em torrent integradas via indexador, permitindo buscar e reproduzir conteúdos diretamente no Stremio.
 
 Ideal para quem quer melhorar cobertura de buscas sem depender de múltiplas fontes.
 
