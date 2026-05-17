@@ -78,7 +78,6 @@ encoding: UTF-8
 
 links:
   - https://www.thepiratafilmes.online
-  - https://catalago.online/
 
 caps:
   categories:
