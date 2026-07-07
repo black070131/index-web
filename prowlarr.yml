@@ -1,10 +1,9 @@
 id: thepiratafilmes
-name: ThePirataFilmes
-description: "ThePirataFilmes - Catálogo de filmes e séries brasileiros"
+name: ThepirataFilmes
+description: "ThepirataFilmes - Seu catálogo premium de filmes e séries"
 language: pt-BR
 type: public
 encoding: UTF-8
-
 links:
   - https://www.thepiratafilmes.online
 
@@ -12,50 +11,42 @@ caps:
   categories:
     2000: Movies
     5000: TV
-
   modes:
     search: [q]
-    tv-search: [q, imdbid, tvdbid, tmdbid]
+    tv-search: [q, imdbid, tmdbid, season, ep]
     movie-search: [q, imdbid, tmdbid]
 
 settings: []
 
 search:
   paths:
-    - path: "/api/search"
+    - path: "api/search"
       method: get
       response:
         type: json
       inputs:
         q: "{{ .Keywords }}"
-        imdbid: "{{ .Query.IMDBID }}"
         tmdbid: "{{ .Query.TMDBID }}"
+        imdbid: "{{ .Query.IMDBID }}"
+        season: "{{ .Query.Season }}"
+        ep: "{{ .Query.Ep }}"
+        cat: "{{ .Categories }}"
 
   rows:
-    selector: "$[*]"
+    selector: "$"
 
   fields:
     title:
       selector: "title"
-
     size:
       selector: "size"
-      optional: true
-
     download:
       selector: "magnet_link"
-
     seeders:
       selector: "seed_count"
-      optional: true
-
     imdbid:
       selector: "imdb"
-      optional: true
-
     details:
       selector: "details"
-      optional: true
-
     category:
       selector: "category"
