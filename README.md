@@ -75,7 +75,6 @@ description: "ThepirataFilmes - Seu catálogo premium de filmes e séries"
 language: pt-BR
 type: public
 encoding: UTF-8
-
 links:
   - https://www.thepiratafilmes.online
 
@@ -85,7 +84,7 @@ caps:
     5000: TV
   modes:
     search: [q]
-    tv-search: [q, imdbid, tvdbid, tmdbid]
+    tv-search: [q, imdbid, tmdbid, season, ep]
     movie-search: [q, imdbid, tmdbid]
 
 settings: []
@@ -100,6 +99,9 @@ search:
         q: "{{ .Keywords }}"
         tmdbid: "{{ .Query.TMDBID }}"
         imdbid: "{{ .Query.IMDBID }}"
+        season: "{{ .Query.Season }}"
+        ep: "{{ .Query.Ep }}"
+        cat: "{{ .Categories }}"
 
   rows:
     selector: "$"
