@@ -1,11 +1,11 @@
-ThePirataFilmes – Indexador de Filmes e Séries Brasileiros integração prowlarr , stremio
+ThePirataFilmes – Indexador de Filmes e Séries Brasileiros integração prowlarr
 
 O ThePirataFilmes é uma plataforma que centraliza diversos indexadores de filmes e séries brasileiros em um só lugar, facilitando a busca e o acesso a conteúdos nacionais. 
 
 🚀 Funcionalidades
 🔎 Busca por filmes e séries
 🇧🇷 Foco em conteúdos brasileiros
-📂 Organização por categorias (gênero, ano, etc.)
+📂 Organização
 
 📌 link serve https://www.thepiratafilmes.online 
 
@@ -18,14 +18,9 @@ Indexador customizado para **Prowlarr**, focado em filmes e séries com conteúd
 ## 🚀 Sobre
 
 O **ThepirataFilmes** é um indexador que centraliza resultados de filmes e séries, permitindo integração com:
-- stremio
 - Prowlarr
 - Radarr
 - Sonarr
-# 🎬 Addon Stremio
-
-Addon integrado para exibição de filmes e séries via indexador.
-
 ## 🚀 Como instalar
 
 Para adicionar o addon no Stremio é bem simples:
