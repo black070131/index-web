@@ -24,8 +24,9 @@ O **ThepirataFilmes** é um indexador que centraliza resultados de filmes e sér
 
 Agradecimentos
 
-Gostaria de agradecer ao Felipe Marinho por disponibilizar o projeto torrent-indexer
+Gostaria de agradecer ao Felipe Marinho por disponibilizar o projeto torrent-indexer,
 As definições de alguns indexadores utilizadas no ThePirataFilmes foram baseadas no trabalho desenvolvido em seu repositório, o que contribuiu significativamente para a evolução deste projeto.
+
 Projeto de referência:
 https://github.com/felipemarinho97/torrent-indexer
   
