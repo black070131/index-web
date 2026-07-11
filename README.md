@@ -21,6 +21,15 @@ O **ThepirataFilmes** é um indexador que centraliza resultados de filmes e sér
 - Prowlarr
 - Radarr
 - Sonarr
+
+Créditos
+
+Este indexador foi desenvolvido utilizando como base o excelente trabalho de Felipe Marinho no projeto torrent-indexer.
+
+Projeto original:
+https://github.com/felipemarinho97/torrent-indexer
+
+Agradecimentos ao autor pela disponibilização da estrutura e definições de indexadores para a comunidade.
   
 ## 🔧 Instalação no Prowlarr
 
