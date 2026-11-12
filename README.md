@@ -7,9 +7,9 @@ O ThePirataFilmes é uma plataforma que centraliza diversos indexadores de filme
 🇧🇷 Foco em conteúdos brasileiros
 📂 Organização
 
-📌 link serve https://www.thepiratafilmes.online 
+📌 link serve https://magnetbr.flixbr.online 
 
-# 📦 ThepirataFilmes – Indexador Prowlarr
+# 📦 MagnetBR – Indexador Prowlarr
 
 Indexador customizado para **Prowlarr**, focado em filmes e séries com conteúdo em português.
 
@@ -17,18 +17,10 @@ Indexador customizado para **Prowlarr**, focado em filmes e séries com conteúd
 
 ## 🚀 Sobre
 
-O **ThepirataFilmes** é um indexador que centraliza resultados de filmes e séries, permitindo integração com:
+O **MagnetBR** é um indexador que centraliza resultados de filmes e séries, permitindo integração com:
 - Prowlarr
 - Radarr
 - Sonarr
-
-Agradecimentos
-
-Gostaria de agradecer ao Felipe Marinho por disponibilizar o projeto torrent-indexer,
-As definições de alguns indexadores utilizadas no ThePirataFilmes foram baseadas no trabalho desenvolvido em seu repositório, o que contribuiu significativamente para a evolução deste projeto.
-
-Projeto de referência:
-https://github.com/felipemarinho97/torrent-indexer
   
 ## 🔧 Instalação no Prowlarr
 
@@ -44,57 +36,109 @@ https://github.com/felipemarinho97/torrent-indexer
 ## 📋 Configuração (.yml)
 
 ```yaml
-id: thepiratafilmes
-name: ThepirataFilmes
-description: "ThepirataFilmes - Seu catálogo premium de filmes e séries"
+---
+id: magnetbr
+name: MagnetBR
+description: "MagnetBR - Indexador de Torrents Magnet Brasileiro (Radarr & Sonarr)"
 language: pt-BR
 type: public
 encoding: UTF-8
 links:
-  - https://www.thepiratafilmes.online
+  - https://magnetbr.flixbr.online/
 
 caps:
   categories:
-    2000: Movies
-    5000: TV
+    Movies: Movies
+    TV: TV
+
   modes:
     search: [q]
-    tv-search: [q, imdbid, tmdbid, season, ep]
-    movie-search: [q, imdbid, tmdbid]
+    tv-search: [q, season, ep, imdbid]
+    movie-search: [q, imdbid]
 
-settings: []
+settings:
+  - name: scraper_type
+    type: select
+    label: Fonte / Scraper
+    default: hybrid
+    options:
+      hybrid: "Híbrido (Catálogo Local + Scrapers)"
+      db: "Catálogo Indexado (Ultra Rápido)"
+      all: "Todos os Scrapers"
+      starck: "Starck"
+      rede: "Rede"
+      tfilme: "Tfilme"
+      comand: "Comando"
+      bludv: "Bludv"
+      torrentclaw: "TorrentClaw (Animes)"
+
+  - name: use_flaresolverr
+    type: select
+    label: Usar FlareSolverr
+    default: "false"
+    options:
+      "true": "Sim"
+      "false": "Não"
 
 search:
   paths:
-    - path: "api/search"
-      method: get
+    - path: "/indexers/{{ .Config.scraper_type }}"
       response:
         type: json
-      inputs:
-        q: "{{ .Keywords }}"
-        tmdbid: "{{ .Query.TMDBID }}"
-        imdbid: "{{ .Query.IMDBID }}"
-        season: "{{ .Query.Season }}"
-        ep: "{{ .Query.Ep }}"
-        cat: "{{ .Categories }}"
+  inputs:
+    use_flaresolverr: "{{ .Config.use_flaresolverr }}"
+    q: "{{ if .Query.IMDBID }}{{ .Query.IMDBID }}{{ else }}{{ .Keywords }}{{ end }}"
+  keywordsfilters:
+    - name: tolower
+    - name: re_replace
+      args: ["(?i)(S0)(\\d{1,2})$", "temporada $2"]
+    - name: re_replace
+      args: ["(?i)(S)(\\d{1,3})$", "temporada $2"]
 
   rows:
-    selector: "$"
+    selector: $.results
+    count:
+      selector: $.count
+      optional: true
 
   fields:
-    title:
-      selector: "title"
-    size:
-      selector: "size"
     download:
-      selector: "magnet_link"
-    seeders:
-      selector: "seed_count"
-    imdbid:
-      selector: "imdb"
+      selector: magnet_link
+    title:
+      selector: title
+    description:
+      selector: original_title
     details:
-      selector: "details"
+      selector: details
+    infohash:
+      selector: info_hash
+    date:
+      selector: date
+    size:
+      selector: size
+      optional: true
+      filters:
+        - name: re_replace
+          args: ["^(|0 B|0B)$", "2,5 GB"]
+    seeders:
+      selector: seed_count
+      filters:
+        - name: re_replace
+          args: ["^(|null|0)$", "1"]
+    leechers:
+      selector: leech_count
+      filters:
+        - name: re_replace
+          args: ["^(|null|0)$", "1"]
+    imdb:
+      selector: imdb
+      optional: true
+    category_is_tv_show:
+      selector: title
+      filters:
+        - name: regexp
+          args: "(?i)(temporada|season|S\\d{1,3}E\\d{1,3}|\\bS\\d{1,3}\\b|\\d+x\\d+|série|series|episódio|episode|EP\\d+|1ª|2ª|3ª|4ª|5ª|6ª|7ª|8ª|9ª|10ª|completa|\\[jap\\]|anime)"
     category:
-      selector: "category"
+      text: "{{ if .Result.category_is_tv_show }}TV{{ else }}Movies{{ end }}"
 
 
