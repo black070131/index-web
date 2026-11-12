@@ -1,6 +1,6 @@
-ThePirataFilmes – Indexador de Filmes e Séries Brasileiros integração prowlarr
+MagnetBR – Indexador de Filmes e Séries Brasileiros integração prowlarr
 
-O ThePirataFilmes é uma plataforma que centraliza diversos indexadores de filmes e séries brasileiros em um só lugar, facilitando a busca e o acesso a conteúdos nacionais. 
+O MagnetBR é uma plataforma que centraliza diversos indexadores de filmes e séries brasileiros em um só lugar, facilitando a busca e o acesso a conteúdos nacionais. 
 
 🚀 Funcionalidades
 🔎 Busca por filmes e séries
