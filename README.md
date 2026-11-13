@@ -59,26 +59,18 @@ caps:
 settings:
   - name: scraper_type
     type: select
-    label: Fonte / Scraper
-    default: hybrid
+    label: Fonte (todas respondem do catálogo; o bot alimenta em segundo plano)
+    default: db
     options:
-      hybrid: "Híbrido (Catálogo Local + Scrapers)"
-      db: "Catálogo Indexado (Ultra Rápido)"
-      all: "Todos os Scrapers"
-      starck: "Starck"
-      rede: "Rede"
-      tfilme: "Tfilme"
-      comand: "Comando"
-      bludv: "Bludv"
-      torrentclaw: "TorrentClaw (Animes)"
-
-  - name: use_flaresolverr
-    type: select
-    label: Usar FlareSolverr
-    default: "false"
-    options:
-      "true": "Sim"
-      "false": "Não"
+      db: "Catálogo completo (recomendado)"
+      hybrid: "Catálogo completo (nome antigo: Híbrido)"
+      all: "Catálogo completo (nome antigo: Todos)"
+      starck: "Só itens do Starck"
+      rede: "Só itens do Rede"
+      tfilme: "Só itens do Tfilme"
+      comand: "Só itens do Comando"
+      bludv: "Só itens do Bludv"
+      torrentclaw: "Só itens do TorrentClaw (Animes)"
 
 search:
   paths:
@@ -86,8 +78,10 @@ search:
       response:
         type: json
   inputs:
-    use_flaresolverr: "{{ .Config.use_flaresolverr }}"
     q: "{{ if .Query.IMDBID }}{{ .Query.IMDBID }}{{ else }}{{ .Keywords }}{{ end }}"
+    # busca por IMDb perde a temporada/episódio: manda separado para o servidor filtrar só aquela temporada
+    season: "{{ .Query.Season }}"
+    ep: "{{ .Query.Ep }}"
   keywordsfilters:
     - name: tolower
     - name: re_replace
